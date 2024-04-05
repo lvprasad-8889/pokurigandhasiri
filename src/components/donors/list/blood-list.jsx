@@ -1,8 +1,7 @@
+import './blood-list.css'
 import React from 'react';
 
-import './temples.css'
-
-const Temples = () => {
+const BloodDonorsList = () => {
     return (
         <React.Fragment>
             
@@ -10,4 +9,4 @@ const Temples = () => {
     )
 }
 
-export default Temples;
+export default BloodDonorsList;

@@ -1,0 +1,9 @@
+.account-details > .fw-bold {
+    min-width: 210px;
+}
+
+@media screen and (max-width: 420px) {
+    .account-details > .fw-bold {
+        min-width: fit-content;
+    }
+}

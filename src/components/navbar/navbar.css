@@ -1,0 +1,65 @@
+.navbar {
+    padding: 0px !important;
+    margin-bottom: 1rem;
+    margin-right: 2px !important;
+}
+
+.navbar-brand {
+    cursor: pointer;
+}
+
+.navbar-toggler {
+    color: green;
+    border: solid 1px #d0d7de;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.offcanvas-body {
+    padding: 0px !important;
+}
+
+.accordion button:focus {
+    box-shadow: none !important;
+}
+
+.accordion-button {
+    background-color: none !important;
+}
+
+.accordion-item, .accordion-button {
+    border-radius: 0px !important;
+}
+
+.navbar-buttons {
+    background-color: white;
+    width: 100%;
+    border: solid 1px #d0d7de;
+    padding: 10px;
+    text-align: start;
+    text-transform: capitalize;
+}
+.navbar-buttons:not(:last-child) {
+    border-bottom: none !important;
+}
+
+.link-arrow {
+    color: #d0d7de;
+}
+
+.link-childrens {
+    padding-left: 30px !important;
+}
+
+@media screen and (max-width: 578px) {
+    .navbar-brand > img {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    .navbar-brand > .line-one {
+        font-weight: 500 !important;
+        font-size: small;
+    } 
+}
