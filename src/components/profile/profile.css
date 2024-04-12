@@ -1,0 +1,41 @@
+.profile {
+  height: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.profile-img {
+  border: solid 5px #198754;
+  background-color: #198754;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+@media screen and (max-width: 575px) {
+  .profile {
+    width: 100% !important;
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .profile {
+    width: 75% !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile .rounded-circle {
+    width: 150px !important;
+    height: 150px !important;
+    font-size: 100px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile .rounded-circle {
+    width: 200px !important;
+    height: 200px !important;
+    font-size: 150px;
+  }
+}

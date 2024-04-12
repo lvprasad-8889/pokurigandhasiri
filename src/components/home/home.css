@@ -6,4 +6,34 @@
     .account-details > .fw-bold {
         min-width: fit-content;
     }
+    .carousel-item > img {
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-item > img {
+        height: auto;
+    }
+    .carousel-inner {
+        overflow: scroll !important;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+    }
+    .carousel-inner > .carousel-item {
+        scroll-snap-align: center;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+    .carousel-item > img {
+        height: 350px;
+    }
+}
+
+
+@media screen and (max-width: 575px) {
+    .carousel-caption {
+        padding-bottom: 0px !important;
+    }
 }

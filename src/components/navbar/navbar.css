@@ -53,13 +53,22 @@
     padding-left: 30px !important;
 }
 
+.pgt-shorthand {
+    letter-spacing: 15px;
+    font-size:larger;
+}
+
 @media screen and (max-width: 578px) {
     .navbar-brand > img {
         width: 60px !important;
         height: 60px !important;
     }
+    /* .navbar-brand > .line-one {
+        font-weight: 800 !important;
+        font-size: larger;
+    }  */
     .navbar-brand > .line-one {
         font-weight: 500 !important;
-        font-size: small;
+        font-size: smaller;
     } 
 }

@@ -1,12 +1,20 @@
-import './blood-list.css'
-import React from 'react';
+import "./blood-list.css";
+import React from "react";
+
+import Search from "../../search/search";
 
 const BloodDonorsList = () => {
-    return (
-        <React.Fragment>
-            
-        </React.Fragment>
-    )
-}
+  const filterData = () => {
+    
+  };
+  return (
+    <React.Fragment>
+      <Search filterData={filterData}></Search>
+      <div className="donors-list-results mt-4">
+
+      </div>
+    </React.Fragment>
+  );
+};
 
 export default BloodDonorsList;

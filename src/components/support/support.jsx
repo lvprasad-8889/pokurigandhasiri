@@ -15,12 +15,12 @@ const Support = () => {
     {
       title: "cermonies & rituals",
       description:
-        "KMS provides assistance based on requests from members for conducting ceremonies and performing rituals.",
+        "PGT provides assistance based on requests from members for conducting ceremonies and performing rituals.",
     },
     {
       title: "FAMILY UNITY FESTIVALS AND FAMILY INTEGRATION",
       description:
-        "KMS annual get-together for all members and friends once in a year, a small part of which is given over to an annual meeting of members.",
+        "PGT annual get-together for all members and friends once in a year, a small part of which is given over to an annual meeting of members.",
     },
     {
       title: "NRI INTEGRATION",
@@ -30,26 +30,26 @@ const Support = () => {
     {
       title: "LEGAL",
       description:
-        "KMS provides free Legal Advice support to its members. Legal Assistance will be provided based on the request from the members.",
+        "PGT provides free Legal Advice support to its members. Legal Assistance will be provided based on the request from the members.",
     },
     {
       title: "COUNSELING",
       description:
-        "KMS provides counseling to members and their families by identifying needs and supporting them through an integrated system of care partners. Our counselors will partner with you to listen to your concerns and assess your needs. Together, you will develop goals for your counseling sessions.",
+        "PGT provides counseling to members and their families by identifying needs and supporting them through an integrated system of care partners. Our counselors will partner with you to listen to your concerns and assess your needs. Together, you will develop goals for your counseling sessions.",
     },
     {
       title: "SPORTS",
       description:
-        "KMS provides healthy, structured sports programs for girls and boys. We encourage active young people with the opportunity to develop values such as commitment, respect for the opponent, adherence to rules, teamwork and fair play.",
+        "PGT provides healthy, structured sports programs for girls and boys. We encourage active young people with the opportunity to develop values such as commitment, respect for the opponent, adherence to rules, teamwork and fair play.",
     },
     {
       title: "MEDICAL",
       description:
-        "KMS provides health camp provides free diagnosis, medicines and food. KMS is planning to tie up with hospitals for providing concession in hospital bills.",
+        "PGT provides health camp provides free diagnosis, medicines and food. PGT is planning to tie up with hospitals for providing concession in hospital bills.",
     },
     {
       title: "SOCIAL SERVICES",
-      description: "KMS Social services includes the benefits and facilities such as education, food, health care and job training."
+      description: "PGT Social services includes the benefits and facilities such as education, food, health care and job training."
     }
   ];
   return (

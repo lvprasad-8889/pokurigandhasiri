@@ -15,6 +15,11 @@ const Navbar = () => {
       children: [],
     },
     {
+      name: "profile",
+      to: "profile",
+      children: [],
+    },
+    {
       name: "about us",
       to: "about",
       children: [],
@@ -27,7 +32,7 @@ const Navbar = () => {
     {
       name: "support",
       to: "support",
-      children: []
+      children: [],
       // children: [
       //   {
       //     name: "emergency",
@@ -67,14 +72,27 @@ const Navbar = () => {
       to: "contact",
       children: [],
     },
+    {
+      name: "Log Out",
+      to: "",
+      children: [],
+    },
   ];
   return (
     <React.Fragment>
       <nav className="navbar navbar-white">
         <div className="container d-flex flex-nowrap">
           <Link className="navbar-brand d-flex gap-1 align-items-center" to="">
-            <img src={Logo} alt="Pokuri Gandha Siri Trust" width="150px" height="100px" />
-            <div className="line-one fw-bold text-success text-wrap d-sm-block">Pokuri GandhaSiri Trust</div>
+            <img
+              src={Logo}
+              alt="Pokuri Gandha Siri Trust"
+              width="150px"
+              height="100px"
+            />
+            <div className="line-one fw-bold text-success text-wrap">
+              Pokuri GandhaSiri Trust
+            </div>
+            {/* <div className="line-one fw-bold text-success text-wrap d-block d-sm-none pgt-shorthand" title="Pokuri GandhaSiri Trust">PGT</div> */}
           </Link>
           <button
             className="navbar-toggler"
@@ -110,7 +128,12 @@ const Navbar = () => {
                       <div className="accordion-header">{item.name}</div>
                     ) : (
                       <Link
-                        onClick={() => navigate(item.to)}
+                        onClick={() => {
+                          if (item.to === "Log Out") {
+                            localStorage.clear();
+                          }
+                          navigate(item.to);
+                        }}
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
                       >

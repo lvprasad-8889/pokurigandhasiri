@@ -67,6 +67,17 @@ const Members = () => {
             <div className="fw-bold mb-2">New Users Register here</div>
             <div className="form-floating mb-3">
               <input
+                type="text"
+                className="form-control"
+                id="floatingInputRegisterName"
+                placeholder="koushik"
+                minLength="6"
+                required
+              />
+              <label htmlFor="floatingInputRegisterName">Enter Name</label>
+            </div>
+            <div className="form-floating mb-3">
+              <input
                 type="email"
                 className="form-control"
                 id="floatingInputRegister"

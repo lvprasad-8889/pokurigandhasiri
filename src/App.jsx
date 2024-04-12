@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 import "./App.css";
 
@@ -11,20 +12,30 @@ import Support from "./components/support/support";
 import Members from "./components/members/members";
 import AddBloodDonor from "./components/donors/blood/blood";
 import BloodDonorsList from "./components/donors/list/blood-list";
-import NotFound from './components/not-found/not-found'
-import Temples from './components/temples/temples'
+import NotFound from "./components/not-found/not-found";
+import Temples from "./components/temples/temples";
+import Profile from "./components/profile/profile";
 
 function App() {
   return (
     <React.Fragment>
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            width: "100%"
+          },
+        }}
+      />
       <Navbar />
       <div className="container mb-5">
         <Routes>
-          <Route path="" element={<Navigate to="donors/list" />} />
+          <Route path="" element={<Navigate to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="members" element={<Members />} />
           <Route path="support" element={<Support />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="donors">
             <Route path="" element={<Navigate to="blood" />} />
             <Route path="add-donor" element={<AddBloodDonor />} />
@@ -32,7 +43,7 @@ function App() {
           </Route>
           <Route path="temples" element={<Temples />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="*"element ={ <NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Outlet></Outlet>
       </div>
