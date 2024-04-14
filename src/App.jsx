@@ -15,15 +15,18 @@ import BloodDonorsList from "./components/donors/list/blood-list";
 import NotFound from "./components/not-found/not-found";
 import Temples from "./components/temples/temples";
 import Profile from "./components/profile/profile";
+import Footer from "./components/footer/footer";
+import Enquiries from "./components/enquiries/enquiries";
+import ProtectedRoute from "./components/protected/protected";
 
 function App() {
   return (
-    <React.Fragment>
+    <div className="position-relative">
       <Toaster
         toastOptions={{
           className: "",
           style: {
-            width: "100%"
+            width: "100%",
           },
         }}
       />
@@ -36,6 +39,9 @@ function App() {
           <Route path="members" element={<Members />} />
           <Route path="support" element={<Support />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="admin" element={<ProtectedRoute />}>
+            <Route path="enquiries" element={<Enquiries />} />
+          </Route>
           <Route path="donors">
             <Route path="" element={<Navigate to="blood" />} />
             <Route path="add-donor" element={<AddBloodDonor />} />
@@ -47,7 +53,8 @@ function App() {
         </Routes>
         <Outlet></Outlet>
       </div>
-    </React.Fragment>
+      <Footer></Footer>
+    </div>
   );
 }
 

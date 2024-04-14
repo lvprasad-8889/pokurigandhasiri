@@ -1,7 +1,13 @@
 import "./home.css";
 import toast from "react-hot-toast";
 
-import Sample from "../../assets/family-images/download.jpg";
+import {
+  firstFamilyImage,
+  secondFamilyImage,
+  thirdFamilyImage,
+  fourthFamilyImage,
+  fifthFamilyImage,
+} from "../../assets/family-images/index";
 
 const Home = () => {
   const bankAccountDetails = {
@@ -14,21 +20,28 @@ const Home = () => {
 
   const carouselData = [
     {
-      img: Sample,
+      img: firstFamilyImage,
       caption: {
         header: "Pokuri Gandhasiri Trust memebers",
         footer: "Representative and Initiators of PGT trust",
       },
     },
     {
-      img: Sample,
+      img: secondFamilyImage,
       caption: {
-        header: "First slide label",
-        footer: "Some representative placeholder content for the second slide.",
+        header: "",
+        footer: "",
       },
     },
     {
-      img: Sample,
+      img: thirdFamilyImage,
+      caption: {
+        header: "",
+        footer: "",
+      },
+    },
+    {
+      img: fourthFamilyImage,
       caption: {
         header: "",
         footer: "",
@@ -39,26 +52,17 @@ const Home = () => {
     <div>
       <div id="carouselExampleCaptions" className="carousel slide mb-3">
         <div className="carousel-indicators d-none d-sm-flex">
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="0"
-            className="active"
-            aria-current="true"
-            aria-label="Slide 1"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="1"
-            aria-label="Slide 2"
-          ></button>
-          <button
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide-to="2"
-            aria-label="Slide 3"
-          ></button>
+          {carouselData.map((item, index) => (
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to={index.toString()}
+              className={index === 0 ? "active" : ""}
+              aria-current={index === 0 ? "true" : ""}
+              aria-label={`Slide + ${index + 1}`}
+              key={index}
+            ></button>
+          ))}
         </div>
         <div className="carousel-inner">
           {carouselData.map((item, index) => (
@@ -68,14 +72,16 @@ const Home = () => {
             >
               <img
                 src={item.img}
-                className="d-block w-100"
+                className="d-block w-100 object-fit-fill"
                 alt={`Image-(index + 1)-loading...`}
                 height="375px"
               />
               {(item.caption.header || item.caption.footer) && (
                 <div className="carousel-caption pb-none pb-sm-5">
                   {item.caption.header && <h5>{item.caption.header}</h5>}
-                  {item.caption.footer && <p className="d-sm-block d-none">{item.caption.footer}</p>}
+                  {item.caption.footer && (
+                    <p className="d-sm-block d-none">{item.caption.footer}</p>
+                  )}
                 </div>
               )}
             </div>

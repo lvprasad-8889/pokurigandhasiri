@@ -17,9 +17,10 @@ const Members = () => {
   };
   const register = (event) => {
     event.preventDefault();
-    let username = registerRef.current[0].value;
-    let phNo = registerRef.current[1].value;
-    let password = registerRef.current[2].value;
+    let name = registerRef.current[0].value;
+    let username = registerRef.current[1].value;
+    let phNo = registerRef.current[2].value;
+    let password = registerRef.current[3].value;
 
     if (username && password && phNo) {
         return;
@@ -29,7 +30,7 @@ const Members = () => {
   return (
     <React.Fragment>
       <div className="container">
-        <div className="row g-2">
+        <div className="row g-4">
           <form className="col-12 col-lg-6" ref={loginRef} onSubmit={login}>
             <div className="display-5 mb-2">Memeber Login</div>
 

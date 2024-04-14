@@ -1,74 +1,76 @@
 .navbar {
-    padding: 0px !important;
-    margin-bottom: 1rem;
-    margin-right: 2px !important;
+  padding: 0px !important;
+  margin-bottom: 1rem;
+  margin-right: 2px !important;
+  border-bottom: solid 1px #198754;
 }
 
 .navbar-brand {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .navbar-toggler {
-    color: green;
-    border: solid 1px #d0d7de;
+  color: green;
+  border: solid 1px #d0d7de;
 }
 
 .navbar-toggler:focus {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .offcanvas-body {
-    padding: 0px !important;
+  padding: 0px !important;
 }
 
 .accordion button:focus {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 .accordion-button {
-    background-color: none !important;
+  background-color: none !important;
 }
 
-.accordion-item, .accordion-button {
-    border-radius: 0px !important;
+.accordion-item,
+.accordion-button {
+  border-radius: 0px !important;
 }
 
 .navbar-buttons {
-    background-color: white;
-    width: 100%;
-    border: solid 1px #d0d7de;
-    padding: 10px;
-    text-align: start;
-    text-transform: capitalize;
+  background-color: white;
+  width: 100%;
+  border: solid 1px #d0d7de;
+  padding: 10px;
+  text-align: start;
+  text-transform: capitalize;
 }
 .navbar-buttons:not(:last-child) {
-    border-bottom: none !important;
+  border-bottom: none !important;
 }
 
 .link-arrow {
-    color: #d0d7de;
+  color: #d0d7de;
 }
 
 .link-childrens {
-    padding-left: 30px !important;
+  padding-left: 30px !important;
 }
 
 .pgt-shorthand {
-    letter-spacing: 15px;
-    font-size:larger;
+  letter-spacing: 15px;
+  font-size: larger;
 }
 
 @media screen and (max-width: 578px) {
-    .navbar-brand > img {
-        width: 60px !important;
-        height: 60px !important;
-    }
-    /* .navbar-brand > .line-one {
+  .navbar-brand > img {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  /* .navbar-brand > .line-one {
         font-weight: 800 !important;
         font-size: larger;
     }  */
-    .navbar-brand > .line-one {
-        font-weight: 500 !important;
-        font-size: smaller;
-    } 
+  .navbar-brand > .line-one {
+    font-weight: 500 !important;
+    font-size: smaller;
+  }
 }

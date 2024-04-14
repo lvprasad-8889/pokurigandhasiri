@@ -7,13 +7,13 @@
         min-width: fit-content;
     }
     .carousel-item > img {
-        height: auto;
+        height: 205px !important;
     }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 421px) and (max-width: 768px) {
     .carousel-item > img {
-        height: auto;
+        height: 250px;
     }
     .carousel-inner {
         overflow: scroll !important;
@@ -31,9 +31,13 @@
     }
 }
 
+.carousel-caption {
+    bottom: -35px !important;
+}
 
 @media screen and (max-width: 575px) {
     .carousel-caption {
+        bottom: -8px !important;
         padding-bottom: 0px !important;
     }
 }

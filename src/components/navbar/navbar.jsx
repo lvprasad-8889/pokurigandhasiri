@@ -1,37 +1,52 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./navbar.css";
 
 import Logo from "../../assets/images/logo.jpg";
 import RightArrow from "../../assets/images/right-arrow.png";
+import { pgtSliceActions } from "../../store/reducer";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const isAdmin = useSelector((state) => state.isAdmin);
+  const loggedIn = useSelector((state) => state.loggedIn);
   const links = [
     {
       name: "home",
       to: "",
+      display: true,
       children: [],
     },
     {
       name: "profile",
       to: "profile",
+      display: loggedIn,
+      children: [],
+    },
+    {
+      name: "enquiries",
+      to: "admin/enquiries",
+      display: isAdmin,
       children: [],
     },
     {
       name: "about us",
       to: "about",
+      display: true,
       children: [],
     },
     {
       name: "members",
       to: "members",
+      display: true,
       children: [],
     },
     {
       name: "support",
       to: "support",
+      display: true,
       children: [],
       // children: [
       //   {
@@ -49,6 +64,7 @@ const Navbar = () => {
     {
       name: "blood donors",
       to: "blood-donors",
+      display: true,
       children: [
         {
           name: "view blood donors list",
@@ -62,19 +78,21 @@ const Navbar = () => {
         },
       ],
     },
-    {
-      name: "temples",
-      to: "temples",
-      children: [],
-    },
+    // {
+    //   name: "temples",
+    //   to: "temples",
+    //   children: [],
+    // },
     {
       name: "contact us",
       to: "contact",
+      display: true,
       children: [],
     },
     {
       name: "Log Out",
       to: "",
+      display: loggedIn,
       children: [],
     },
   ];
@@ -82,7 +100,7 @@ const Navbar = () => {
     <React.Fragment>
       <nav className="navbar navbar-white">
         <div className="container d-flex flex-nowrap">
-          <Link className="navbar-brand d-flex gap-1 align-items-center" to="">
+          <Link className="navbar-brand d-flex gap-1 align-items-center" to="/home">
             <img
               src={Logo}
               alt="Pokuri Gandha Siri Trust"
@@ -123,24 +141,26 @@ const Navbar = () => {
             <div className="offcanvas-body">
               {links.map((item, index) => (
                 <React.Fragment key={index}>
-                  <div className="navbar-buttons">
-                    {item.children.length > 0 ? (
-                      <div className="accordion-header">{item.name}</div>
-                    ) : (
-                      <Link
-                        onClick={() => {
-                          if (item.to === "Log Out") {
-                            localStorage.clear();
-                          }
-                          navigate(item.to);
-                        }}
-                        data-bs-dismiss="offcanvas"
-                        aria-label="Close"
-                      >
-                        {item.name}
-                      </Link>
-                    )}
-                  </div>
+                  {item.display && (
+                    <div className="navbar-buttons">
+                      {item.children.length > 0 ? (
+                        <div className="accordion-header">{item.name}</div>
+                      ) : (
+                        <Link
+                          onClick={() => {
+                            if (item.to === "Log Out") {
+                              pgtSliceActions.logout();
+                            }
+                            navigate(item.to);
+                          }}
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </div>
+                  )}
                   {item.children.length > 0 &&
                     item.children.map((sub, ind) => (
                       <Link
