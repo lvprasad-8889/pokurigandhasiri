@@ -30,30 +30,32 @@ function App() {
           },
         }}
       />
-      <Navbar />
-      <div className="container mb-5">
-        <Routes>
-          <Route path="" element={<Navigate to="home" />} />
-          <Route path="home" element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="members" element={<Members />} />
-          <Route path="support" element={<Support />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="admin" element={<ProtectedRoute />}>
-            <Route path="enquiries" element={<Enquiries />} />
-          </Route>
-          <Route path="donors">
-            <Route path="" element={<Navigate to="blood" />} />
-            <Route path="add-donor" element={<AddBloodDonor />} />
-            <Route path="list" element={<BloodDonorsList />} />
-          </Route>
-          <Route path="temples" element={<Temples />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Outlet></Outlet>
+      <div className="d-flex justify-content-between flex-column first-frame">
+        <Navbar />
+        <div className="container mb-5">
+          <Routes>
+            <Route path="" element={<Navigate to="home" />} />
+            <Route path="home" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="members" element={<Members />} />
+            <Route path="support" element={<Support />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="admin" element={<ProtectedRoute />}>
+              <Route path="enquiries" element={<Enquiries />} />
+            </Route>
+            <Route path="donors">
+              <Route path="" element={<Navigate to="blood" />} />
+              <Route path="add-donor" element={<AddBloodDonor />} />
+              <Route path="list" element={<BloodDonorsList />} />
+            </Route>
+            <Route path="temples" element={<Temples />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Outlet></Outlet>
+        </div>
+        <Footer></Footer>
       </div>
-      <Footer></Footer>
     </div>
   );
 }
