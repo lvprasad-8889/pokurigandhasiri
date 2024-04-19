@@ -1,6 +1,10 @@
+import { useDispatch } from "react-redux";
+import { addBloodDonorAction } from "../../../store/action";
 import "./blood.css";
 import React, { useRef } from "react";
+import toast from "react-hot-toast";
 const Blood = () => {
+  const dispatch = useDispatch();
   let bloodRef = useRef();
   let states = [
     "Andhra Pradesh",
@@ -51,6 +55,17 @@ const Blood = () => {
       bloodGroup: bloodRef.current[4].value,
       cityOrPlaceOrArea: bloodRef.current[5].value,
     };
+    dispatch(addBloodDonorAction(donorDetails))
+      .then((res) => {
+        toast.success("Blood details added successfully", {
+          id: "clipboard",
+        });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          id: "clipboard",
+        });
+      });
   };
   return (
     <React.Fragment>
@@ -132,14 +147,14 @@ const Blood = () => {
                 <option defaultValue value="">
                   Select the blood group
                 </option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
+                <option value="A+ve">A+ve</option>
+                <option value="A-ve">A-ve</option>
+                <option value="B+ve">B+ve</option>
+                <option value="B-ve">B-ve</option>
+                <option value="O+ve">O+ve</option>
+                <option value="O-ve">O-ve</option>
+                <option value="AB+ve">AB+ve</option>
+                <option value="AB-ve">AB-ve</option>
               </select>
             </div>
 

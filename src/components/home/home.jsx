@@ -12,9 +12,9 @@ import {
 const Home = () => {
   const bankAccountDetails = {
     "Account Name": "POKURI GANDHASIRI TRUST",
-    "Account No": "1234",
-    "IFSC Code": "ABCD",
-    Branch: "Sample branch",
+    "Account No": "50200084178884",
+    "IFSC Code": "HDFC0003949",
+    "Branch": "Nizampet",
     "Any UPI Mobile Number": "1234",
   };
 

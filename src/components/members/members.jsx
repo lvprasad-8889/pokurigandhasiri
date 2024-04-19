@@ -1,17 +1,52 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 
 import "./members.css";
+import { registerAction, loginAction, shortHandNotationOfName } from "../../store/action";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 
 const Members = () => {
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
   let loginRef = useRef();
   let registerRef = useRef();
 
+  const clearRegisterFields = () => {
+    registerRef.current[0].value = "";
+    registerRef.current[1].value = "";
+    registerRef.current[2].value = "";
+    registerRef.current[3].value = "";
+  };
+
+  const clearLoginFields = () => {
+    loginRef.current[0].value = "";
+    loginRef.current[1].value = "";
+  };
+
   const login = (event) => {
     event.preventDefault();
-    let username = loginRef.current[0].value;
+    let name = loginRef.current[0].value;
     let password = loginRef.current[1].value;
-    if (username && password) {
-        return;
+    if (name && password) {
+      dispatch(
+        loginAction({
+          name,
+          password,
+        })
+      )
+        .then((res) => {
+          toast.success("Login successfull");
+          navigate("../profile");
+        })
+        .catch((err) => {
+          clearLoginFields();
+          toast.error("Username or password is wrong", {
+            id: "clipboard",
+          });
+        });
+      return;
     }
     return;
   };
@@ -21,9 +56,30 @@ const Members = () => {
     let username = registerRef.current[1].value;
     let phNo = registerRef.current[2].value;
     let password = registerRef.current[3].value;
+    let snn = shortHandNotationOfName(name);
 
     if (username && password && phNo) {
-        return;
+      dispatch(
+        registerAction({
+          name,
+          username,
+          phNo,
+          password,
+          snn,
+        })
+      )
+        .then((res) => {
+          clearRegisterFields();
+          toast.success("Registered successfully, Please login");
+          loginRef.current[0].focus();
+        })
+        .catch((err) => {
+          toast.error("User already exists", {
+            id: "clipboard",
+          });
+          registerRef.current[0].value = "";
+        });
+      return;
     }
     return;
   };
@@ -63,7 +119,11 @@ const Members = () => {
             />
           </form>
 
-          <form className="col-12 col-lg-6" ref={registerRef} onSubmit={register}>
+          <form
+            className="col-12 col-lg-6"
+            ref={registerRef}
+            onSubmit={register}
+          >
             <div className="display-5 mb-2">Member Registration</div>
             <div className="fw-bold mb-2">New Users Register here</div>
             <div className="form-floating mb-3">

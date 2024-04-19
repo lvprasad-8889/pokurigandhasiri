@@ -72,8 +72,13 @@ const Footer = () => {
           <div className="">
             <h4 className="text-success fw-bold">Pokuri Gandhasiri Trust</h4>
             <div className="details">
-              <div></div>
-              <div>Mobile : </div>
+              <div>
+                <div>No. 42, Road No 3, ASR Rajunagar colony</div>
+                <div>Nizampet Road</div>
+                <div>Hydernagar</div>
+                <div>Hyderabad 500 085</div>
+              </div>
+              <div>Mobile : 1234</div>
               <div>Email : pokurigandhasiri999@gmail.com</div>
             </div>
           </div>

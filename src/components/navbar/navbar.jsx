@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import "./navbar.css";
 
@@ -10,9 +10,12 @@ import { pgtSliceActions } from "../../store/reducer";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isAdmin = useSelector((state) => state.isAdmin);
   const loggedIn = useSelector((state) => state.loggedIn);
-  const links = [
+
+  console.log(loggedIn, isAdmin);
+  const [links, setLinks] = useState([
     {
       name: "home",
       to: "",
@@ -95,12 +98,20 @@ const Navbar = () => {
       display: loggedIn,
       children: [],
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    setLinks([...links])
+  }, [isAdmin, loggedIn])
+
   return (
     <React.Fragment>
       <nav className="navbar navbar-white">
         <div className="container d-flex flex-nowrap">
-          <Link className="navbar-brand d-flex gap-1 align-items-center" to="/home">
+          <Link
+            className="navbar-brand d-flex gap-1 align-items-center"
+            to="/home"
+          >
             <img
               src={Logo}
               alt="Pokuri Gandha Siri Trust"
@@ -149,7 +160,8 @@ const Navbar = () => {
                         <Link
                           onClick={() => {
                             if (item.to === "Log Out") {
-                              pgtSliceActions.logout();
+                              dispatch(pgtSliceActions.logout());
+                              navigate("../");
                             }
                             navigate(item.to);
                           }}
