@@ -46,9 +46,6 @@ mongoClient
 const userApis = require("./apis/userApis/userApis");
 const adminApis = require("./apis/adminApis/adminApis");
 
-app.get("", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
-});
 
 app.use("/user", userApis);
 app.use("/admin", adminApis);
@@ -57,6 +54,14 @@ app.use((err, req, res, next) => {
   res.send({ message: false, reason: `Error is ${err}` });
   next();
 });
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '/build/index.html'), function (err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 // app.use("*", (req, res) => {
 //   res.redirect(path.join(__dirname, "build", "index.html"));
