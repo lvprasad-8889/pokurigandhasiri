@@ -37,15 +37,15 @@ const BloodDonorsList = () => {
             No blood donors found with selected blood group
           </div>
         )}
-        {!isLoading && bloodDonorsList.length && (
-          {
+        {!isLoading &&
+          bloodDonorsList.length && (
             bloodDonorsList.map((item, index) => (
-              <div key={index}>
-               {item}
+              <div>
+                {item}
               </div>
             ))
+          )
           }
-        )}
       </div>
     </React.Fragment>
   );

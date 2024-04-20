@@ -4,7 +4,7 @@ import { pgtSliceActions } from "./reducer";
 
 let baseUrlDev = "http://localhost:4000";
 
-const shortHandNotationOfName = (name) => {
+export const shortHandNotationOfName = (name) => {
   let res = name.split(" ");
   if (res.length > 1) {
     return res[0][0] + res[1][0];
