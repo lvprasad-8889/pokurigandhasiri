@@ -3,13 +3,11 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 
-app.use(express.static(path.join(__dirname,"dist/webapp")));
+app.use(express.static(path.join(__dirname, "dist")));
 
 // app.use(cors());
 
 app.use(express.json());
-
-
 
 let mongoClient = require("mongodb").MongoClient;
 
@@ -48,12 +46,12 @@ mongoClient
 const userApis = require("./apis/userApis/userApis");
 const adminApis = require("./apis/adminApis/adminApis");
 
-
-
+app.get("", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.use("/user", userApis);
 app.use("/admin", adminApis);
-
 
 app.use((err, req, res, next) => {
   res.send({ message: false, reason: `Error is ${err}` });
@@ -61,9 +59,7 @@ app.use((err, req, res, next) => {
 });
 
 // app.use("*", (req, res) => {
-//   res.send({
-//     message: `${req.baseUrl} does not exist`,
-//   });
+//   res.redirect(path.join(__dirname, "build", "index.html"));
 // });
 
 // attaching a port number to server with listen

@@ -2,7 +2,7 @@ import Axios from "axios";
 import toast from "react-hot-toast";
 import { pgtSliceActions } from "./reducer";
 
-let baseUrlDev = "http://localhost:4000";
+let baseUrlDev = "";
 
 export const shortHandNotationOfName = (name) => {
   let res = name.split(" ");

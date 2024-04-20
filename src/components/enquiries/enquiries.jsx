@@ -6,8 +6,8 @@ const Enquiries = () => {
   const enquiries = useSelector((state) => state.enquiries);
   return (
     <div className="row">
-      {enquiries &&
-        enquiries.length &&
+      {(enquiries &&
+        enquiries.length) ?
         enquiries.map((item, index) => (
           <div className="card profile p-2 mt-5 m-auto col-lg-6" key={index}>
             <div className="container">
@@ -34,7 +34,12 @@ const Enquiries = () => {
               </div>
             </div>
           </div>
-        ))}
+        )) : (
+          <div className="display-5 text-center">
+            <div className=""> Hello Admin</div>
+            <div className="">No Enquiries as of now</div>
+          </div>
+        )}
     </div>
   );
 };
