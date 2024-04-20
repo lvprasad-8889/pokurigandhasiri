@@ -56,11 +56,8 @@ app.use((err, req, res, next) => {
 });
 
 app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, '/build/index.html'), function (err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
+  app.use(express.static(path.resolve(__dirname, "build")));
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
 })
 
 // app.use("*", (req, res) => {
