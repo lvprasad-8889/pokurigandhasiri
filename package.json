@@ -3,6 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "main": "server.js",
+  "proxy":"https://pokurigandhasiri.onrender.com",
   "scripts": {
     "start": "node --env-file=.env  --watch server.js",
     "dev": "vite",

@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 
-app.use(cors());
+app.use(exp.static(path.join(__dirname,"dist/webapp")));
+
+// app.use(cors());
 
 app.use(express.json());
 
@@ -55,11 +58,11 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.use("*", (req, res) => {
-  res.send({
-    message: `${req.baseUrl} does not exist`,
-  });
-});
+// app.use("*", (req, res) => {
+//   res.send({
+//     message: `${req.baseUrl} does not exist`,
+//   });
+// });
 
 // attaching a port number to server with listen
 const port = process.env.PORT;
