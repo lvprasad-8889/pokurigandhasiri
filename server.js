@@ -3,7 +3,7 @@ const app = express();
 const cors = require("cors");
 const path = require("path");
 
-app.use(exp.static(path.join(__dirname,"dist/webapp")));
+app.use(express.static(path.join(__dirname,"dist/webapp")));
 
 // app.use(cors());
 
@@ -47,6 +47,8 @@ mongoClient
 
 const userApis = require("./apis/userApis/userApis");
 const adminApis = require("./apis/adminApis/adminApis");
+
+
 
 
 app.use("/user", userApis);
