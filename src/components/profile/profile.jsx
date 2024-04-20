@@ -32,7 +32,7 @@ const Profile = () => {
               <div
                 className="btn btn-success mt-4 mt-sm-0"
                 onClick={() => {
-                  dispatch(pgtSliceActions.logout())
+                  dispatch(pgtSliceActions.logout());
                   navigate("../");
                 }}
               >

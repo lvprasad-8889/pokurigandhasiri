@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import "./navbar.css";
 
 import Logo from "../../assets/images/logo.jpg";
-import RightArrow from "../../assets/images/right-arrow.png";
 import { pgtSliceActions } from "../../store/reducer";
 
 const Navbar = () => {
@@ -14,95 +13,92 @@ const Navbar = () => {
   const isAdmin = useSelector((state) => state.isAdmin);
   const loggedIn = useSelector((state) => state.loggedIn);
 
-  console.log(loggedIn, isAdmin);
-  const [links, setLinks] = useState([
-    {
-      name: "home",
-      to: "",
-      display: true,
-      children: [],
-    },
-    {
-      name: "profile",
-      to: "profile",
-      display: loggedIn,
-      children: [],
-    },
-    {
-      name: "enquiries",
-      to: "admin/enquiries",
-      display: isAdmin,
-      children: [],
-    },
-    {
-      name: "about us",
-      to: "about",
-      display: true,
-      children: [],
-    },
-    {
-      name: "members",
-      to: "members",
-      display: true,
-      children: [],
-    },
-    {
-      name: "support",
-      to: "support",
-      display: true,
-      children: [],
-      // children: [
-      //   {
-      //     name: "emergency",
-      //     to: "support/emergency",
-      //     children: [],
-      //   },
-      //   {
-      //     name: "education",
-      //     to: "support/education",
-      //     children: [],
-      //   },
-      // ],
-    },
-    {
-      name: "blood donors",
-      to: "blood-donors",
-      display: true,
-      children: [
-        {
-          name: "view blood donors list",
-          to: "donors/list",
-          children: [],
-        },
-        {
-          name: "add blood donors",
-          to: "donors/add-donor",
-          children: [],
-        },
-      ],
-    },
-    // {
-    //   name: "temples",
-    //   to: "temples",
-    //   children: [],
-    // },
-    {
-      name: "contact us",
-      to: "contact",
-      display: true,
-      children: [],
-    },
-    {
-      name: "Log Out",
-      to: "",
-      display: loggedIn,
-      children: [],
-    },
-  ]);
-
-  useEffect(() => {
-    setLinks([...links])
-  }, [isAdmin, loggedIn])
+  const links = useMemo(() => {
+    return [
+      {
+        name: "home",
+        to: "",
+        display: true,
+        children: [],
+      },
+      {
+        name: "profile",
+        to: "profile",
+        display: loggedIn ? true : false,
+        children: [],
+      },
+      {
+        name: "enquiries",
+        to: "admin/enquiries",
+        display: isAdmin ? true : false,
+        children: [],
+      },
+      {
+        name: "about us",
+        to: "about",
+        display: true,
+        children: [],
+      },
+      {
+        name: "members",
+        to: "members",
+        display: true,
+        children: [],
+      },
+      {
+        name: "support",
+        to: "support",
+        display: true,
+        children: [],
+        // children: [
+        //   {
+        //     name: "emergency",
+        //     to: "support/emergency",
+        //     children: [],
+        //   },
+        //   {
+        //     name: "education",
+        //     to: "support/education",
+        //     children: [],
+        //   },
+        // ],
+      },
+      {
+        name: "blood donors",
+        to: "blood-donors",
+        display: true,
+        children: [
+          {
+            name: "view blood donors list",
+            to: "donors/list",
+            children: [],
+          },
+          {
+            name: "add blood donors",
+            to: "donors/add-donor",
+            children: [],
+          },
+        ],
+      },
+      // {
+      //   name: "temples",
+      //   to: "temples",
+      //   children: [],
+      // },
+      {
+        name: "contact us",
+        to: "contact",
+        display: true,
+        children: [],
+      },
+      {
+        name: "log out",
+        to: "",
+        display: loggedIn,
+        children: [],
+      },
+    ];
+  }, [isAdmin, loggedIn]);
 
   return (
     <React.Fragment>
@@ -119,7 +115,7 @@ const Navbar = () => {
               height="100px"
             />
             <div className="line-one fw-bold text-success text-wrap">
-              Pokuri GandhaSiri Trust
+              Pokuri Gandhasiri Trust
             </div>
             {/* <div className="line-one fw-bold text-success text-wrap d-block d-sm-none pgt-shorthand" title="Pokuri GandhaSiri Trust">PGT</div> */}
           </Link>
@@ -140,7 +136,7 @@ const Navbar = () => {
           >
             <div className="offcanvas-header">
               <h5 className="offcanvas-title" id="offcanvasExampleLabel">
-                <img src={Logo} alt="Pokuri Gandha Siri Trust" width="70px" />
+                <img src={Logo} alt="Pokuri Gandhasiri Trust" width="70px" />
               </h5>
               <button
                 type="button"
@@ -159,9 +155,9 @@ const Navbar = () => {
                       ) : (
                         <Link
                           onClick={() => {
-                            if (item.to === "Log Out") {
+                            if (item.name === "log out") {
                               dispatch(pgtSliceActions.logout());
-                              navigate("../");
+                              // navigate("../");
                             }
                             navigate(item.to);
                           }}

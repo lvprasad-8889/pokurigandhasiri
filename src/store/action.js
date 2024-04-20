@@ -40,10 +40,13 @@ export const loginAction = (userCredentials) => {
     toast.dismiss(toastId);
     if (response.data.message) {
       if (response.data.admin) {
-        dispatch(pgtSliceActions.setAdmin(true));
+        dispatch(pgtSliceActions.setAdmin({
+          isAdmin: true,
+          enquiries: response.data.enquiries
+        }));
       }
       dispatch(pgtSliceActions.onLogin({ ...response.data.profile }));
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("token", "Bearer " + response.data.token);
     } else {
       throw response.data.reason;
     }
@@ -76,6 +79,35 @@ export const searchBloodGroupAction = (bloodGroup) => {
     if (!response.data.message) {
       throw "Error in fetching blood groups";
     }
-    dispatch(pgtSliceActions.setBloodDonorsList([...response.data.result]));
+    let list = response.data.result ? response.data.result : []
+    dispatch(pgtSliceActions.setBloodDonorsList(list));
+  };
+};
+
+export const addEnquiry = (enquiryDetails) => {
+  return async (dispatch) => {
+    dispatch(pgtSliceActions.setIsLoading(true));
+    let response = await Axios.post(
+      `${baseUrlDev}/user/add-enquiry`, enquiryDetails
+    );
+    dispatch(pgtSliceActions.setIsLoading(false));
+    if (!response.data.message) {
+      throw "Sorry one enquiry per person";
+    }
+  };
+};
+
+export const getEnquiries = (enquiryDetails) => {
+  return async (dispatch) => {
+    dispatch(pgtSliceActions.setIsLoading(true));
+    let response = await Axios.post(
+      `${baseUrlDev}/admin/enquiries`, {
+        headers
+      }
+    );
+    dispatch(pgtSliceActions.setIsLoading(false));
+    if (!response.data.message) {
+      throw "Sorry one enquiry per person";
+    }
   };
 };

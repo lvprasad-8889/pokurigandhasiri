@@ -1,19 +1,49 @@
 import React, { useRef } from "react";
 
 import "./contact.css";
+import { useDispatch } from "react-redux";
+import { addEnquiry, shortHandNotationOfName } from "../../store/action";
+import toast from "react-hot-toast";
 
 const Contact = () => {
+  const dispatch = useDispatch();
   let enquiryRef = useRef();
+
+  const clearEnquiryValues = () => {
+    enquiryRef.current[0].value = "";
+    enquiryRef.current[1].value = "";
+    enquiryRef.current[2].value = "";
+    enquiryRef.current[3].value = "";
+  };
   const enquiry = (event) => {
     event.preventDefault();
     let name = enquiryRef.current[0].value;
-    let username = enquiryRef.current[1].value;
+    let mailId = enquiryRef.current[1].value;
     let phNo = enquiryRef.current[2].value;
     let message = enquiryRef.current[3].value;
 
-    if (username && password && phNo) {
-      return;
-    }
+    dispatch(
+      addEnquiry({
+        name,
+        mailId,
+        phNo,
+        message,
+        snn: shortHandNotationOfName(name)
+      })
+    )
+      .then((res) => {
+        clearEnquiryValues();
+        toast.success("Enquiry added, admin will contact you", {
+          id: "clipboard",
+        });
+      })
+      .catch((err) => {
+        clearEnquiryValues();
+        toast.error(err, {
+          id: "clipboard",
+        });
+      });
+
     return;
   };
   return (
@@ -22,14 +52,14 @@ const Contact = () => {
         <h5 className="fw-bold text-success">Contact Us</h5>
         <h4 className="text-success fw-bold">Pokuri Gandhasiri Trust</h4>
         <div className="details">
-            <div>
-              <div>No. 42, Road No 3, ASR Rajunagar colony</div>
-              <div>Nizampet Road</div>
-              <div>Hydernagar</div>
-              <div>Hyderabad 500 085</div>
-            </div>
-            <div>Mobile : 1234</div>
-            <div>Email : pokurigandhasiri999@gmail.com</div>
+          <div>
+            <div>No. 42, Road No 3, ASR Rajunagar colony</div>
+            <div>Nizampet Road</div>
+            <div>Hydernagar</div>
+            <div>Hyderabad 500 085</div>
+          </div>
+          <div>Mobile : 1234</div>
+          <div>Email : pokurigandhasiri999@gmail.com</div>
         </div>
       </div>
       <div className="enquiry mt-5">

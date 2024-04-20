@@ -1,8 +1,12 @@
 import { useDispatch } from "react-redux";
-import { addBloodDonorAction } from "../../../store/action";
+import {
+  addBloodDonorAction,
+  shortHandNotationOfName,
+} from "../../../store/action";
 import "./blood.css";
 import React, { useRef } from "react";
 import toast from "react-hot-toast";
+
 const Blood = () => {
   const dispatch = useDispatch();
   let bloodRef = useRef();
@@ -45,6 +49,15 @@ const Blood = () => {
     "Puducherry",
   ];
 
+  const clearBloodGroupDetails = () => {
+    bloodRef.current[0].value = "";
+    bloodRef.current[1].value = "";
+    bloodRef.current[2].value = "";
+    bloodRef.current[3].value = "";
+    bloodRef.current[4].value = "";
+    bloodRef.current[5].value = "";
+  };
+
   const addBloodDonor = (event) => {
     event.preventDefault();
     let donorDetails = {
@@ -54,14 +67,17 @@ const Blood = () => {
       pincode: bloodRef.current[3].value,
       bloodGroup: bloodRef.current[4].value,
       cityOrPlaceOrArea: bloodRef.current[5].value,
+      snn: shortHandNotationOfName(bloodRef.current[0].value),
     };
     dispatch(addBloodDonorAction(donorDetails))
       .then((res) => {
+        clearBloodGroupDetails();
         toast.success("Blood details added successfully", {
           id: "clipboard",
         });
       })
       .catch((err) => {
+        clearBloodGroupDetails();
         toast.error(err, {
           id: "clipboard",
         });

@@ -11,7 +11,6 @@ miniApp.get(
   expressAsyncHandler(async (req, res) => {
     let bloodDonorsObj = req.app.get("bloodDonorsObj");
     let bloodGroup = req.params.bloodGroup;
-    console.log(req.body)
     let bloodDonors = await bloodDonorsObj.find({
       bloodGroup
     }).toArray();
@@ -54,12 +53,11 @@ miniApp.post(
     let adminEnquiryObj = req.app.get("adminEnquiryObj");
     let enquiryCredentials = req.body;
     let nameExist = await adminEnquiryObj.findOne({
-      name: enquiryCredentials.name,
+      mailId: enquiryCredentials.mailId,
     });
     let phNoExist = await adminEnquiryObj.findOne({
       phNo: enquiryCredentials.phNo,
     });
-
     if (!nameExist && !phNoExist) {
       let result = await adminEnquiryObj.insertOne(enquiryCredentials);
       res.send({
@@ -88,9 +86,8 @@ miniApp.post(
       username: userCredentials.name,
     });
 
-    console.log(usernameExist);
-
     if (usernameExistInAdmin) {
+      let adminEnquiryObj = req.app.get("adminEnquiryObj");
       let passwordMatched = await bcryptjs.compare(
         userCredentials.password,
         usernameExistInAdmin.password
@@ -113,10 +110,12 @@ miniApp.post(
         let profile = await adminCredObj.findOne({
           username: userCredentials.name,
         });
+        let enquiries = await adminEnquiryObj.find().toArray();
         res.send({
           message: true,
           admin: true,
           profile,
+          enquiries,
           token,
         });
       } else {
