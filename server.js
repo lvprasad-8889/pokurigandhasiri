@@ -47,6 +47,10 @@ const userApis = require("./apis/userApis/userApis");
 const adminApis = require("./apis/adminApis/adminApis");
 
 
+app.get('', function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+})
+
 app.use("/user", userApis);
 app.use("/admin", adminApis);
 
@@ -55,10 +59,6 @@ app.use((err, req, res, next) => {
   next();
 });
 
-app.get('/*', function (req, res) {
-  app.use(express.static(path.resolve(__dirname, "build")));
-  res.sendFile(path.resolve(__dirname, "build", "index.html"));
-})
 
 // app.use("*", (req, res) => {
 //   res.redirect(path.join(__dirname, "build", "index.html"));
