@@ -50,7 +50,7 @@ const Home = () => {
   ];
   return (
     <div>
-      <div id="carouselExampleCaptions" className="carousel slide mb-3">
+      <div id="carouselExampleCaptions" className="carousel slide mb-3" data-bs-ride="carousel">
         <div className="carousel-indicators d-none d-sm-flex">
           {carouselData.map((item, index) => (
             <button
@@ -69,6 +69,7 @@ const Home = () => {
             <div
               className={index === 0 ? "carousel-item active" : "carousel-item"}
               key={index}
+              data-bs-interval="5000"
             >
               <img
                 src={item.img}
