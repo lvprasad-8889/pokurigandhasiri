@@ -15,7 +15,7 @@ const Home = () => {
     "Account No": "50200084178884",
     "IFSC Code": "HDFC0003949",
     "Branch": "Nizampet",
-    "Any UPI Mobile Number": "1234",
+    "Any UPI Mobile Number": "9885178884",
   };
 
   const carouselData = [

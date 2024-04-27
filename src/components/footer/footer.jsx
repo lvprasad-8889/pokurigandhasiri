@@ -78,7 +78,7 @@ const Footer = () => {
                 <div>Hydernagar</div>
                 <div>Hyderabad 500 085</div>
               </div>
-              <div>Mobile : 1234</div>
+              <div>Mobile : 9885178884</div>
               <div>Email : pokurigandhasiri999@gmail.com</div>
             </div>
           </div>
