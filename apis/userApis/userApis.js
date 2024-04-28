@@ -11,9 +11,11 @@ miniApp.get(
   expressAsyncHandler(async (req, res) => {
     let bloodDonorsObj = req.app.get("bloodDonorsObj");
     let bloodGroup = req.params.bloodGroup;
-    let bloodDonors = await bloodDonorsObj.find({
-      bloodGroup
-    }).toArray();
+    let bloodDonors = await bloodDonorsObj
+      .find({
+        bloodGroup,
+      })
+      .toArray();
     res.send({
       message: true,
       result: bloodDonors,
@@ -59,7 +61,10 @@ miniApp.post(
       phNo: enquiryCredentials.phNo,
     });
     if (!nameExist && !phNoExist) {
-      let result = await adminEnquiryObj.insertOne(enquiryCredentials);
+      let result = await adminEnquiryObj.insertOne({
+        ...enquiryCredentials,
+        enquiryValue: "0",
+      });
       res.send({
         message: true,
       });
@@ -79,11 +84,11 @@ miniApp.post(
     let adminCredObj = req.app.get("adminCredObj");
     let userCredentials = req.body;
     let usernameExist = await userObj.findOne({
-      username: userCredentials.name,
+      mailId: userCredentials.mailId,
     });
 
     let usernameExistInAdmin = await adminCredObj.findOne({
-      username: userCredentials.name,
+      mailId: userCredentials.mailId,
     });
 
     if (usernameExistInAdmin) {
@@ -96,7 +101,7 @@ miniApp.post(
       if (passwordMatched) {
         let keyToEncrypt = process.env.ADDEDKEYFORADMIN;
 
-        let token = jwt.sign({ name: userCredentials.name }, keyToEncrypt, {
+        let token = jwt.sign({ mailId: userCredentials.mailId }, keyToEncrypt, {
           expiresIn: "1d",
         });
         let updatedAt = await adminCredObj.updateOne(
@@ -110,12 +115,10 @@ miniApp.post(
         let profile = await adminCredObj.findOne({
           username: userCredentials.name,
         });
-        let enquiries = await adminEnquiryObj.find().toArray();
         res.send({
           message: true,
           admin: true,
           profile,
-          enquiries,
           token,
         });
       } else {
@@ -143,7 +146,15 @@ miniApp.post(
             },
           }
         );
-        let profile = await userObj.findOne({ username: userCredentials.name });
+        let profile = await userObj.findOne(
+          { username: userCredentials.name },
+          {
+            name: 1,
+            mailId: 1,
+            phNo: 1,
+            snn: 1,
+          }
+        );
         res.send({
           message: true,
           profile,
@@ -168,7 +179,7 @@ miniApp.post(
     let userObj = req.app.get("userObj");
     let userCredentials = req.body;
     let nameExist = await userObj.findOne({
-      username: userCredentials.username,
+      mailId: userCredentials.mailId,
     });
     let phNoExist = await userObj.findOne({ phNo: userCredentials.phNo });
     if (!nameExist && !phNoExist) {

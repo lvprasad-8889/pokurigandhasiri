@@ -20,7 +20,6 @@ const verifyToken = (req, res, next) => {
           login: true
         });
       } else {
-        console.log("admin logged in", new Date());
         next();
       }
     });

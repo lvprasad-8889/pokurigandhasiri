@@ -1,3 +1,5 @@
-.loader-height {
-    height: 30vh;
+@media screen and (max-width: 575px) {
+    .loader-height {
+        height: 30vh;
+    }
 }

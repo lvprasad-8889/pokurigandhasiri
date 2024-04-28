@@ -42,7 +42,7 @@ const Navbar = () => {
       {
         name: "members",
         to: "members",
-        display: true,
+        display: !loggedIn,
         children: [],
       },
       {

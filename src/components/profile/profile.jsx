@@ -25,7 +25,7 @@ const Profile = () => {
               <div className="name fw-bold text-capitalize mb-2">
                 {userData.name}
               </div>
-              <div className="mailId mb-2">{userData.username}</div>
+              <div className="mailId mb-2">{userData.mailId}</div>
               <div className="phNo mb-2">{userData.phNo}</div>
             </div>
             <div className="">

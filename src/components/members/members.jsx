@@ -1,17 +1,21 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./members.css";
-import { registerAction, loginAction, shortHandNotationOfName } from "../../store/action";
-import { useNavigate } from "react-router-dom";
+import {
+  registerAction,
+  loginAction,
+  shortHandNotationOfName,
+} from "../../store/action";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
 
 const Members = () => {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   let loginRef = useRef();
   let registerRef = useRef();
+  const loggedIn = useSelector((state) => state.loggedIn);
 
   const clearRegisterFields = () => {
     registerRef.current[0].value = "";
@@ -27,12 +31,12 @@ const Members = () => {
 
   const login = (event) => {
     event.preventDefault();
-    let name = loginRef.current[0].value;
+    let mailId = loginRef.current[0].value;
     let password = loginRef.current[1].value;
-    if (name && password) {
+    if (mailId && password) {
       dispatch(
         loginAction({
-          name,
+          mailId,
           password,
         })
       )
@@ -50,40 +54,37 @@ const Members = () => {
     }
     return;
   };
+
   const register = (event) => {
     event.preventDefault();
     let name = registerRef.current[0].value;
-    let username = registerRef.current[1].value;
+    let mailId = registerRef.current[1].value;
     let phNo = registerRef.current[2].value;
     let password = registerRef.current[3].value;
     let snn = shortHandNotationOfName(name);
 
-    if (username && password && phNo) {
-      dispatch(
-        registerAction({
-          name,
-          username,
-          phNo,
-          password,
-          snn,
-        })
-      )
-        .then((res) => {
-          clearRegisterFields();
-          toast.success("Registered successfully, Please login");
-          loginRef.current[0].focus();
-        })
-        .catch((err) => {
-          toast.error("User already exists", {
-            id: "clipboard",
-          });
-          registerRef.current[0].value = "";
+    dispatch(
+      registerAction({
+        name,
+        mailId,
+        phNo,
+        password,
+        snn,
+      })
+    )
+      .then((res) => {
+        clearRegisterFields();
+        toast.success("Registered successfully, Please login");
+        loginRef.current[0].focus();
+      })
+      .catch((err) => {
+        toast.error("User already exists", {
+          id: "clipboard",
         });
-      return;
-    }
-    return;
+        registerRef.current[0].value = "";
+      });
   };
-  return (
+  return !loggedIn ? (
     <React.Fragment>
       <div className="container">
         <div className="row g-4">
@@ -182,6 +183,8 @@ const Members = () => {
         </div>
       </div>
     </React.Fragment>
+  ) : (
+      <Navigate to="../" />
   );
 };
 

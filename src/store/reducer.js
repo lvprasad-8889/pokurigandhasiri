@@ -32,7 +32,6 @@ const pgtSlice = createSlice({
     },
     setAdmin(state, action) {
       state.isAdmin = action.payload.isAdmin;
-      state.enquiries = [...action.payload.enquiries];
     },
     setBloodDonorsList(state, action) {
       if (action.payload.length >= 1) {

@@ -10,6 +10,7 @@
   justify-content: center;
   align-items: center;
   color: white;
+  box-shadow: #198754 0px 5px 15px;
 }
 
 @media screen and (max-width: 575px) {
@@ -28,7 +29,7 @@
   .profile .rounded-circle {
     width: 150px !important;
     height: 150px !important;
-    font-size: 100px;
+    font-size: 90px;
   }
 }
 
@@ -36,6 +37,6 @@
   .profile .rounded-circle {
     width: 200px !important;
     height: 200px !important;
-    font-size: 150px;
+    font-size: 120px;
   }
 }

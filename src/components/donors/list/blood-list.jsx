@@ -15,11 +15,6 @@ const BloodDonorsList = () => {
   const isLoading = useSelector((state) => state.isLoading);
   const filterData = (selected) => {
     dispatch(searchBloodGroupAction(selected))
-      .then((res) => {
-        toast.success("Blood Groups fetched", {
-          id: "clipboard",
-        });
-      })
       .catch((err) => {
         toast.error(err, {
           id: "clipboard",

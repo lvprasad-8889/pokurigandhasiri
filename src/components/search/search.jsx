@@ -25,7 +25,7 @@ const Search = (props) => {
       <form onSubmit={filterData} className="d-flex gap-3">
         {props.templeSearch && <input type="text" className="form-control" />}
         {props.bloodSearch && (
-          <select className="form-select" ref={searchBloodGroupRef}>
+          <select className="form-select" ref={searchBloodGroupRef} onChange={filterData}>
             {bloodGroups.map((item, index) => (
               <option
                 value={item}
@@ -36,11 +36,6 @@ const Search = (props) => {
             ))}
           </select>
         )}
-        <input
-          type="submit"
-          value="Search"
-          className="btn btn-success"
-        />
       </form>
     </div>
   );

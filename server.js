@@ -5,7 +5,7 @@ const path = require("path");
 
 app.use(express.static(path.join(__dirname, "dist")));
 
-// app.use(cors());
+process.env.NODE_ENV ? app.use(cors()) : "";
 
 app.use(express.json());
 
@@ -46,7 +46,6 @@ mongoClient
 const userApis = require("./apis/userApis/userApis");
 const adminApis = require("./apis/adminApis/adminApis");
 
-
 app.use("/user", userApis);
 app.use("/admin", adminApis);
 
@@ -56,9 +55,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/*", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "dist", "index.html")
-  )
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 // app.use("*", (req, res) => {
