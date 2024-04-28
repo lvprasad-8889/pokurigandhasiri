@@ -64,6 +64,23 @@ const Navbar = () => {
         // ],
       },
       {
+        name: "Family",
+        to: "family",
+        display: true,
+        children: [
+          {
+            name: "add family member",
+            to: "family/add",
+            children: [],
+          },
+          {
+            name: "family members",
+            to: "family/members",
+            children: [],
+          },
+        ],
+      },
+      {
         name: "blood donors",
         to: "blood-donors",
         display: true,
@@ -115,7 +132,7 @@ const Navbar = () => {
               height="100px"
             />
             <div className="line-one fw-bold text-success text-wrap">
-              Pokuri Gandhasiri Trust
+              Pokuri Gandhasiri Gothra Trust
             </div>
             {/* <div className="line-one fw-bold text-success text-wrap d-block d-sm-none pgt-shorthand" title="Pokuri GandhaSiri Trust">PGT</div> */}
           </Link>

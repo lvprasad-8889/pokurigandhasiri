@@ -18,6 +18,8 @@ import Profile from "./components/profile/profile";
 import Footer from "./components/footer/footer";
 import Enquiries from "./components/enquiries/enquiries";
 import ProtectedRoute from "./components/protected/protected";
+import Family from "./components/family/add/family";
+import FamilyMembers from "./components/family/members/members";
 
 function App() {
   return (
@@ -50,6 +52,11 @@ function App() {
             </Route>
             <Route path="temples" element={<Temples />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="family">
+            <Route path="" element={<Navigate to="members" />} />
+              <Route path="members" element={<FamilyMembers />} />
+              <Route path="add" element={<Family />} />
+            </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Outlet></Outlet>

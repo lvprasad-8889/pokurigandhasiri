@@ -14,6 +14,7 @@ const Enquiries = () => {
   const enquiries = useSelector((state) => state.enquiries);
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.isLoading);
+  
   const fetchEnquiries = () => {
     dispatch(getEnquiries())
       .then((res) => {

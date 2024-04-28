@@ -89,7 +89,7 @@ const Members = () => {
       <div className="container">
         <div className="row g-4">
           <form className="col-12 col-lg-6" ref={loginRef} onSubmit={login}>
-            <div className="display-5 mb-2">Memeber Login</div>
+            <div className="display-5 mb-2">Member Login</div>
 
             <div className="fw-bold mb-2">Existing Users Login here</div>
 
@@ -133,7 +133,7 @@ const Members = () => {
                 className="form-control"
                 id="floatingInputRegisterName"
                 placeholder="koushik"
-                minLength="6"
+                minLength="3"
                 required
               />
               <label htmlFor="floatingInputRegisterName">Enter Name</label>
@@ -184,7 +184,7 @@ const Members = () => {
       </div>
     </React.Fragment>
   ) : (
-      <Navigate to="../" />
+    <Navigate to="../" />
   );
 };
 

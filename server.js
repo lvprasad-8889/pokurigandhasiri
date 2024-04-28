@@ -25,6 +25,7 @@ mongoClient
     // admin collections
     let adminCredObj = adminObj.collection("admin");
     let adminEnquiryObj = adminObj.collection("enquiries");
+    let adminFamilyObj = adminObj.collection("adminFamilyObj");
 
     // normal users
     app.set("userObj", userObj);
@@ -34,6 +35,7 @@ mongoClient
     // admins
     app.set("adminCredObj", adminCredObj);
     app.set("adminEnquiryObj", adminEnquiryObj);
+    app.set("adminFamilyObj", adminFamilyObj);
 
     console.log("Database connected successfully...");
   })

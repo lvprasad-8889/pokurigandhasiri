@@ -8,6 +8,7 @@ const initialState = {
   userData: {},
   isLoading: false,
   enquiries: [],
+  members: []
 };
 
 const pgtSlice = createSlice({
@@ -22,16 +23,18 @@ const pgtSlice = createSlice({
       state.bloodDonorsList = [];
       state.enquiries = [];
       state.userData = {};
+      state.members = [];
     },
     initialLogin(state, action) {
       state.loggedIn = true;
     },
     onLogin(state, action) {
       state.loggedIn = true;
-      state.userData = { ...action.payload };
+      state.userData = action.payload.data;
     },
     setAdmin(state, action) {
       state.isAdmin = action.payload.isAdmin;
+      state.enquiries = action.payload.enquiries;
     },
     setBloodDonorsList(state, action) {
       if (action.payload.length >= 1) {
@@ -43,6 +46,9 @@ const pgtSlice = createSlice({
     setIsLoading(state, action) {
       state.isLoading = action.payload;
     },
+    setMembers (state, action) {
+      state.members = [...action.payload]
+    }
   },
 });
 

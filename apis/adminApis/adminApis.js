@@ -56,6 +56,32 @@ adminApp.post(
   })
 );
 
+adminApp.post(
+  "/family",
+  verifyToken,
+  expressAsyncHandler(async (req, res) => {
+    let adminFamilyObj = req.app.get("adminFamilyObj");
+    let familyCredentials = req.body;
+
+    let phNoExist = await adminFamilyObj.findOne({ phNo: familyCredentials.phNo });
+
+    if (!phNoExist) {
+
+      familyCredentials.created_at = new Date();
+      familyCredentials.updated_at = new Date();
+      let result = await adminFamilyObj.insertOne(familyCredentials);
+      res.send({
+        message: true
+      });
+    } else {
+      res.send({
+        message: false,
+        reason: "User already exist",
+      });
+    }
+  })
+);
+
 adminApp.put(
   "/update-enquiry-status",
   expressAsyncHandler(async (req, res) => {

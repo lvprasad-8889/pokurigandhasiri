@@ -23,6 +23,20 @@ miniApp.get(
   })
 );
 
+miniApp.get(
+  "/family-members",
+  expressAsyncHandler(async (req, res) => {
+    let adminFamilyObj = req.app.get("adminFamilyObj");
+    let members = await adminFamilyObj
+      .find()
+      .toArray();
+    res.send({
+      message: true,
+      members,
+    });
+  })
+);
+
 miniApp.post(
   "/add-blood-donor",
   expressAsyncHandler(async (req, res) => {

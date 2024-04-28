@@ -31,30 +31,31 @@ export const registerAction = (userCredentials) => {
 
 export const loginAction = (userCredentials) => {
   return async (dispatch) => {
-   
-      const toastId = toast.loading("Verifying...", {
-        id: "clipboard",
-      });
-      let response = await Axios.post(
-        `${baseUrlDev}/user/login`,
-        userCredentials
-      );
-      toast.dismiss(toastId);
-      if (response.data.message) {
-        if (response.data.admin) {
-          dispatch(
-            pgtSliceActions.setAdmin({
-              isAdmin: true
-            })
-          );
-        }
-        dispatch(pgtSliceActions.onLogin({ ...response.data.profile }));
-        localStorage.setItem("token", "Bearer " + response.data.token);
-      } else {
-        throw response.data.reason;
+    const toastId = toast.loading("Verifying...", {
+      id: "clipboard",
+    });
+    let response = await Axios.post(
+      `${baseUrlDev}/user/login`,
+      userCredentials
+    );
+    toast.dismiss(toastId);
+    if (response.data.message) {
+      if (response.data.admin) {
+        dispatch(
+          pgtSliceActions.setAdmin({
+            isAdmin: true,
+          })
+        );
       }
-    
-    
+      dispatch(
+        pgtSliceActions.onLogin({
+          data: response.data.profile,
+        })
+      );
+      localStorage.setItem("token", "Bearer " + response.data.token);
+    } else {
+      throw response.data.reason;
+    }
   };
 };
 
@@ -192,15 +193,15 @@ export const deleteEnquiries = (mailId) => {
   };
 };
 
-
-export const deleteBloodDonorAction = ({phNo, bloodGroup}) => {
+export const deleteBloodDonorAction = ({ phNo, bloodGroup }) => {
   return async (dispatch) => {
     dispatch(pgtSliceActions.setIsLoading(true));
     let response = await Axios.delete(
-      `${baseUrlDev}/admin/delete-donor/${phNo}/${bloodGroup}`, {
+      `${baseUrlDev}/admin/delete-donor/${phNo}/${bloodGroup}`,
+      {
         headers: {
-          authorization: localStorage.getItem("token")
-        }
+          authorization: localStorage.getItem("token"),
+        },
       }
     );
 
@@ -210,5 +211,34 @@ export const deleteBloodDonorAction = ({phNo, bloodGroup}) => {
     }
     let list = response.data.result ? response.data.result : [];
     dispatch(pgtSliceActions.setBloodDonorsList(list));
-  }
-}
+  };
+};
+
+export const familyAction = (familyCredentials) => {
+  return async (dispatch) => {
+    const toastId = toast.loading("Adding family member...", {
+      id: "clipboard",
+    });
+    let response = await Axios.post(`${baseUrlDev}/admin/family`, {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+      familyCredentials,
+    });
+    toast.dismiss(toastId);
+    if (!response.data.message) {
+      throw response.data.reason;
+    }
+  };
+};
+
+export const familyMembers = () => {
+  return async (dispatch) => {
+    let res = await Axios.get(`${baseUrlDev}/user/family-members`);
+    if (!res.data.message) {
+      throw "Error from our side";
+    }
+    let result = res.data.members ? [...res.data.members] : [];
+    dispatch(pgtSliceActions.setMembers(result));
+  };
+};
